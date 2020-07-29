@@ -28,8 +28,14 @@
               <% todoItems.forEach(item => { %>
               <li class="todo-item">
                 <div class="modify">
-                  <form action="/edit" method="post">
-                    <div class="item">
+                  <div class="edit">
+                    <form action="/edit" method="post">
+                      <input
+                        value="<%= item.name %>"
+                        type="text"
+                        name="updateName"
+                        class="input-edit"
+                      />
                       <input
                         type="checkbox"
                         name="checkbox"
@@ -38,20 +44,14 @@
                         id="edit"
                         style="display: none;"
                       />
-                      <input
-                        value="<%= item.name %>"
-                        type="text"
-                        name="updateName"
-                      />
 
                       <label for="edit" style="cursor: pointer;">
                         <i class="far fa-edit"></i
                       ></label>
-                    </div>
-                  </form>
-
-                  <form action="/delete" method="post">
-                    <div class="item">
+                    </form>
+                  </div>
+                  <div class="delete">
+                    <form action="/delete" method="post">
                       <input
                         type="checkbox"
                         name="checkbox"
@@ -63,8 +63,8 @@
                       <label for="cross" style="cursor: pointer;">
                         <i class="fas fa-times"></i
                       ></label>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </li>
               <% }) %>

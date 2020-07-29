@@ -20,7 +20,20 @@ body {
   font-size: 20px;
 }
 .modify {
-  float: right;
+  display: flex;
   margin-right: 10px;
   font-size: 20px;
+}
+.edit {
+  margin: 0 15px;
+}
+.delete {
+  padding: 4px 0;
+}
+.input-edit {
+  border: none;
+}
+.input-edit:focus {
+  outline: none;
+  border-bottom: 1px solid grey;
 }

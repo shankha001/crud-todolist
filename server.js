@@ -11,10 +11,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost:27017/todolistDB', {
+//MONGO ATLAS DB
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
+
+//MONGO LOCAL DB
+// mongoose.connect('mongodb://localhost:27017/todolistDB', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 const itemsSchema = {
   name: String,
@@ -59,7 +67,7 @@ app.post('/delete', function (req, res) {
 
   Item.findByIdAndRemove(checkedItemId, function (err) {
     if (!err) {
-      console.log('Successfully deleted checked item.');
+      // console.log('Successfully deleted checked item.');
       res.redirect('/');
     }
   });
@@ -69,4 +77,6 @@ app.get('/', function (req, res) {
   res.render('list');
 });
 
-app.listen(3000, () => console.log('Server Started on Port 3000'));
+app.listen(process.env.PORT || 3000, () =>
+  console.log('Server Started on Port 3000')
+);
