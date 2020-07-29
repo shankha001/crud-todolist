@@ -27,8 +27,6 @@
             <ul class="todo-list">
               <% todoItems.forEach(item => { %>
               <li class="todo-item">
-                <div class="todo-item-name"><%= item.name %></div>
-
                 <div class="modify">
                   <form action="/edit" method="post">
                     <div class="item">
@@ -40,6 +38,12 @@
                         id="edit"
                         style="display: none;"
                       />
+                      <input
+                        value="<%= item.name %>"
+                        type="text"
+                        name="updateName"
+                      />
+
                       <label for="edit" style="cursor: pointer;">
                         <i class="far fa-edit"></i
                       ></label>

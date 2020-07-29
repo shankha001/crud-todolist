@@ -40,12 +40,22 @@ app.get('/', (req, res) => {
   });
 });
 
-//Delete
-
-app.post('/delete', function (req, res) {
+//Update
+app.post('/edit', (req, res) => {
   const checkedItemId = req.body.checkbox;
 
-  console.log(checkedItemId);
+  Item.findByIdAndUpdate(
+    checkedItemId,
+    { name: req.body.updateName },
+    function (err) {
+      res.redirect('/');
+    }
+  );
+});
+
+//Delete
+app.post('/delete', function (req, res) {
+  const checkedItemId = req.body.checkbox;
 
   Item.findByIdAndRemove(checkedItemId, function (err) {
     if (!err) {
