@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.todo-container {
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.todo-list {
+  list-style: none;
+  padding-left: 0;
+}
+.todo-item {
+  margin-bottom: 10px;
+}
+.todo-item-name {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.modify {
+  float: right;
+  margin-right: 10px;
+  font-size: 20px;
+}

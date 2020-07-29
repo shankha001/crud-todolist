@@ -1,0 +1,62 @@
+<%- include("header") -%>
+
+<body>
+  <div class="todo-container">
+    <h2 style="text-align: center; margin-bottom: 20px;">To-Do List</h2>
+    <div class="todo">
+      <form action="/" method="POST" class="todo-header">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            name="newItem"
+            class="form-control"
+            placeholder="New Item"
+            aria-label="New Item"
+            aria-describedby="basic-addon2"
+            required="true"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-warning" type="submit">+</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <ul class="todo-list">
+              <% todoItems.forEach(item => { %>
+              <li class="todo-item">
+                <div class="todo-item-name"><%= item.name %></div>
+
+                <div class="modify">
+                  <a
+                    href="/edit/<%= item._id %>"
+                    class="edit"
+                    style="margin-right: 10px;"
+                  >
+                    <i class="fas fa-pen"></i>
+                  </a>
+                  <a href="/remove/<%= item._id %>" class="remove">
+                    <i class="fas fa-times"></i>
+                  </a>
+                </div>
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+    crossorigin="anonymous"
+  ></script>
+</body>
