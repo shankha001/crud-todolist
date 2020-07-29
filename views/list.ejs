@@ -30,16 +30,37 @@
                 <div class="todo-item-name"><%= item.name %></div>
 
                 <div class="modify">
-                  <a
-                    href="/edit/<%= item._id %>"
-                    class="edit"
-                    style="margin-right: 10px;"
-                  >
-                    <i class="fas fa-pen"></i>
-                  </a>
-                  <a href="/remove/<%= item._id %>" class="remove">
-                    <i class="fas fa-times"></i>
-                  </a>
+                  <form action="/edit" method="post">
+                    <div class="item">
+                      <input
+                        type="checkbox"
+                        name="checkbox"
+                        value="<%=item._id%>"
+                        onChange="this.form.submit()"
+                        id="edit"
+                        style="display: none;"
+                      />
+                      <label for="edit" style="cursor: pointer;">
+                        <i class="far fa-edit"></i
+                      ></label>
+                    </div>
+                  </form>
+
+                  <form action="/delete" method="post">
+                    <div class="item">
+                      <input
+                        type="checkbox"
+                        name="checkbox"
+                        value="<%=item._id%>"
+                        onChange="this.form.submit()"
+                        id="cross"
+                        style="display: none;"
+                      />
+                      <label for="cross" style="cursor: pointer;">
+                        <i class="fas fa-times"></i
+                      ></label>
+                    </div>
+                  </form>
                 </div>
               </li>
               <% }) %>

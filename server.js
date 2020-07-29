@@ -36,8 +36,22 @@ app.post('/', function (req, res) {
 //Read
 app.get('/', (req, res) => {
   Item.find({}, (err, items) => {
-    console.log(items);
     res.render('list', { todoItems: items });
+  });
+});
+
+//Delete
+
+app.post('/delete', function (req, res) {
+  const checkedItemId = req.body.checkbox;
+
+  console.log(checkedItemId);
+
+  Item.findByIdAndRemove(checkedItemId, function (err) {
+    if (!err) {
+      console.log('Successfully deleted checked item.');
+      res.redirect('/');
+    }
   });
 });
 
