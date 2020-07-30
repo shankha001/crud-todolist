@@ -2,10 +2,11 @@
 
 <body>
   <div class="todo-container">
-    <h2 style="text-align: center; margin-bottom: 20px;">To-Do List</h2>
+    <h2 style="text-align: center; margin-bottom: 20px;">ToDo List</h2>
     <div class="todo">
       <form action="/" method="POST" class="todo-header">
         <div class="input-group mb-3">
+          <!--New Items-->
           <input
             type="text"
             name="newItem"
@@ -14,9 +15,18 @@
             aria-label="New Item"
             aria-describedby="basic-addon2"
             required="true"
+            autocomplete="off"
           />
           <div class="input-group-append">
-            <button class="btn btn-warning" type="submit">+</button>
+            <button
+              class="btn btn-warning"
+              type="submit"
+              data-toggle="tooltip"
+              title="Add Item"
+              style="color: white;"
+            >
+              +
+            </button>
           </div>
         </div>
       </form>
@@ -24,10 +34,21 @@
       <div class="row">
         <div class="col s12 m7">
           <div class="card">
-            <ul class="todo-list">
+            <!-- Search-Items -->
+            <input
+              type="text"
+              id="search"
+              onkeyup="handleChange()"
+              placeholder="Search Items"
+              class="search-item-input"
+              autocomplete="off"
+            />
+            <!-- List -->
+            <ul class="todo-list" id="todo-list-UL">
               <% todoItems.forEach(item => { %>
               <li class="todo-item">
                 <div class="modify">
+                  <!-- Edit -->
                   <div class="edit">
                     <form action="/edit" method="post">
                       <input
@@ -35,21 +56,28 @@
                         type="text"
                         name="updateName"
                         class="input-edit"
+                        autocomplete="off"
                       />
                       <input
                         type="checkbox"
-                        name="checkbox"
+                        name="check"
                         value="<%=item._id%>"
+                        id="edit<%= item._id%>"
                         onChange="this.form.submit()"
-                        id="edit"
                         style="display: none;"
                       />
 
-                      <label for="edit" style="cursor: pointer;">
-                        <i class="far fa-edit"></i
+                      <label
+                        for="edit<%=item._id%>"
+                        style="cursor: pointer;"
+                        data-toggle="tooltip"
+                        title="Save Changes"
+                      >
+                        <i class="far fa-edit" style="color: blueviolet;"></i
                       ></label>
                     </form>
                   </div>
+                  <!-- Delete -->
                   <div class="delete">
                     <form action="/delete" method="post">
                       <input
@@ -57,11 +85,17 @@
                         name="checkbox"
                         value="<%=item._id%>"
                         onChange="this.form.submit()"
-                        id="cross"
+                        id="cross<%=item._id%>"
                         style="display: none;"
+                        autocomplete="off"
                       />
-                      <label for="cross" style="cursor: pointer;">
-                        <i class="fas fa-times"></i
+                      <label
+                        for="cross<%=item._id%>"
+                        style="cursor: pointer;"
+                        data-toggle="tooltip"
+                        title="Delete Item"
+                      >
+                        <i class="fas fa-times" style="color: red;"></i
                       ></label>
                     </form>
                   </div>
@@ -74,6 +108,7 @@
       </div>
     </div>
   </div>
+
   <script
     src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -84,4 +119,5 @@
     integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
     crossorigin="anonymous"
   ></script>
+  <script src="js/index.js"></script>
 </body>

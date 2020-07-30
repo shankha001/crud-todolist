@@ -22,6 +22,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // mongoose.connect('mongodb://localhost:27017/todolistDB', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
+//   useFindAndModify: false,
 // });
 
 const itemsSchema = {
@@ -50,8 +51,8 @@ app.get('/', (req, res) => {
 
 //Update
 app.post('/edit', (req, res) => {
-  const checkedItemId = req.body.checkbox;
-
+  const checkedItemId = req.body.check;
+  // console.log(checkedItemId);
   Item.findByIdAndUpdate(
     checkedItemId,
     { name: req.body.updateName },
@@ -62,12 +63,11 @@ app.post('/edit', (req, res) => {
 });
 
 //Delete
-app.post('/delete', function (req, res) {
+app.post('/delete', (req, res) => {
   const checkedItemId = req.body.checkbox;
-
   Item.findByIdAndRemove(checkedItemId, function (err) {
     if (!err) {
-      // console.log('Successfully deleted checked item.');
+      // console.log(checkedItemId);
       res.redirect('/');
     }
   });
