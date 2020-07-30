@@ -1,6 +1,8 @@
 # CRUD - Todolist
 
-Simple Todolist using NodeJS and MongoDB displaying CRUD(Create, Read, Update, Delete) functionality.
+Simple Todolist using NodeJS and MongoDB displaying CRUD(Create, Read, Update, Delete) functionality. 
+
+The demo of the app is provided in ```demo/demo.mp4```
 
 
 ## Dependencies
